@@ -15,6 +15,9 @@ class Item
   def move_to_archive
     if can_be_archived?
       @archived = true
+      puts "This item has been archived."
+    else
+      puts "This item cannot be archived at this time."
     end
   end
 end
