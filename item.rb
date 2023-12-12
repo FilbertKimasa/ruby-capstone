@@ -1,22 +1,11 @@
 # item.rb
 
 class Item
-  attr_accessor :title, :description, :published_date, :archived, :comments
+  attr_writer :genre, :author, :source, :label
 
-  def initialize(title, description, published_date)
-    @title = title
-    @description = description
+  def initialize(published_date, archived: false)
     @published_date = published_date
-    @archived = false
-    @comments = []
-  end
-
-  def add_comment(comment)
-    @comments << comment
-  end
-
-  def display_comments
-    @comments.each { |comment| puts comment }
+    @archived = archived
   end
 
   def can_be_archived?
@@ -26,9 +15,6 @@ class Item
   def move_to_archive
     if can_be_archived?
       @archived = true
-      puts "#{@title} has been archived."
-    else
-      puts "#{@title} cannot be archived at this time."
     end
   end
 end
