@@ -8,7 +8,7 @@ class App
     @item = []
   end
 
-  def create_item
+  def add_book
     print 'Enter Genre: '
     genre = gets.chomp
     print 'Enter Author: '
