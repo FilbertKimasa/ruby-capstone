@@ -37,7 +37,7 @@ class Item
     @label = label
     label.items.push(self) unless label.items.include?(self)
   end
-  
+
   private
 
   attr_accessor :archived
