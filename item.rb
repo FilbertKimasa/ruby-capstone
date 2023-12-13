@@ -1,7 +1,7 @@
 # item.rb
 
 class Item
-  attr_writer :genre, :author, :source, :label
+  attr_accessor :genre, :author, :source, :label
 
   def initialize(published_date, archived: false)
     @published_date = published_date
