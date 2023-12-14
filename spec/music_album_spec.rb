@@ -1,5 +1,4 @@
 # music_album_spec.rb
-
 require_relative '../music_album'
 
 RSpec.describe MusicAlbum do

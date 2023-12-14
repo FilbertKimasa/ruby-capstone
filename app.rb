@@ -1,14 +1,30 @@
-# app.rb
-
+# app
+require_relative 'item'
 require_relative 'music_album'
 require_relative 'genre'
 
 class App
-  attr_accessor :music_albums, :genres
+  attr_accessor :item
 
   def initialize
+    @item = []
     @genres = []
     @music_albums = []
+  end
+
+  def add_book
+    print 'Enter Genre: '
+    genre = gets.chomp
+    print 'Enter Author: '
+    author = gets.chomp
+    print 'Enter source: '
+    source = gets.chomp
+    print 'Enter label: '
+    label= gets.chomp
+    item = Item.new(genre)
+    @item << item
+    puts 'Item Created Successfully'
+    puts ' '
   end
 
   def list_all_music_albums
