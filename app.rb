@@ -2,14 +2,18 @@ require_relative 'item'
 require_relative 'list_all_books'
 require_relative 'book_label'
 require_relative 'label'
+require_relative 'file_operations'
+require 'date'
 
 # Core functionality class
 class App
-  attr_accessor :item
+  attr_accessor :item, :books
 
   def initialize
     @books = []
     @labels = []
+    @file_operations = FileOperations.new(@app)
+
   end
 
   def add_label(title, color)
@@ -45,7 +49,7 @@ class App
     label = find_or_create_label(label_name)
 
     print 'Publish Date: '
-    publish_date = gets.chomp
+    publish_date = Date.parse(gets.chomp)
 
     print 'Publisher: '
     publisher = gets.chomp
@@ -56,8 +60,8 @@ class App
     book = Book.new(publish_date, publisher, cover_state)
     book.label = label
 
-    @books << book
     label.add_item(book)
+    @books << book
 
     puts "Book '#{publisher}' added successfully!"
   end
@@ -73,6 +77,15 @@ class App
         end
       end
     end
+  end
+
+  # Public methods for saving and loading data
+  def save_data_to_files
+    @file_operations.save_data_to_files
+  end
+
+  def load_data_from_files
+    @file_operations.load_data_from_files
   end
 
   private
