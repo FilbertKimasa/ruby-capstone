@@ -1,7 +1,9 @@
 # item.rb
+require 'date'
 
 class Item
   attr_writer :genre, :author, :source, :label
+  attr_reader :published_date
 
   def initialize(published_date)
     @id = Random.rand(1...1000)
@@ -24,6 +26,6 @@ class Item
   attr_reader :id
 
   def can_be_archived?
-    (Time.now.year - @published_date.year) > 10
+    (Time.now.year - Date.parse(@published_date).year) > 10
   end
 end
