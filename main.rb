@@ -11,6 +11,7 @@ class Catalog
   end
 
   def start
+    @file_operations.load_data_from_files 
 
     display_welcome_message
 
