@@ -48,8 +48,6 @@ class App
   def add_music_album(genre_name, published_date, on_spotify)
     genre = find_or_create_genre(genre_name)
     music_album = MusicAlbum.new(published_date, on_spotify)
-    music_album.title = title
-    music_album.artist = artist
     genre.add_item(music_album)
     @music_albums << music_album
     puts "Music album added: #{music_album.to_s}"
