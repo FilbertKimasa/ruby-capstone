@@ -38,6 +38,14 @@ class Item
     label.items.push(self) unless label.items.include?(self)
   end
 
+  def to_json(options = {})
+    {
+      'id' => @id,
+      'published_date' => @published_date,
+      'archived' => @archived
+    }.to_json(options)
+  end
+
   private
 
   attr_accessor :archived
