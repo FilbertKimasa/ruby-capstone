@@ -22,8 +22,16 @@ class App
     @labels << label
   end
 
+  def add_item_options
+    puts 'select an option below'
+    print 'Do you want to add a book (1)'
+    print 'Do you want to add a music album(2)'
+    print 'Do you want to add a movie(3)'
+    print 'Do you want to add a game(4)'
+  end
+
   def add_item
-    prompt_create_options
+    add_item_options
     item_type = gets.chomp.to_i
     case item_type
     when 1
@@ -51,9 +59,16 @@ class App
 
   # add book method
   def add_book
-    prompt_label
-    print 'Publish Date (YYYY/MM/DD) :'
-    publish_date = gets.chomp
+    label = label_prompt
+    begin
+      print 'Publish Date (YYYY/MM/DD) :'
+      publish_date_input = gets.chomp
+      publish_date = Date.parse(publish_date_input)
+    rescue ArgumentError
+      puts 'Invalid date format. Please enter the date in the format YYYY/MM/DD.'
+      return
+    end
+
     print 'Publisher: '
     publisher = gets.chomp
     print 'Cover State: '
@@ -65,7 +80,17 @@ class App
     label.add_item(book)
     @books << book
 
-    puts "Book '#{publisher}' added successfully!"
+    puts "Book #{publisher} added successfully!"
+  end
+
+  def label_prompt
+    print 'Label title(Gift/new): '
+    label_name = gets.chomp
+    print 'Label color: '
+    label_color = gets.chomp
+
+    # Find or create label
+    find_or_create_label(label_name, label_color)
   end
 
   def list_all_books
