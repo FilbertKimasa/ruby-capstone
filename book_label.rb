@@ -7,7 +7,6 @@ class Book < Item
   attr_reader :id
   attr_writer :publish_date
 
-
   def initialize(publish_date, publisher, cover_state)
     super(Date.parse(publish_date))
     @publisher = publisher

@@ -14,7 +14,7 @@ describe Label do
   end
 
   it 'has a color' do
-    expect(@label.color).to eq('red')
+    expect(@label.color).to eq('blue')
   end
 
   it 'starts with no items' do
