@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require_relative 'item'
 require_relative 'list_all_books'
 require_relative 'book_label'

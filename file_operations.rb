@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'json'
 
 # file operations class
@@ -10,7 +12,6 @@ class FileOperations
     save_to_file('books.json', @app.books)
     save_label_to_file('labels.json', @app.labels)
     save_game_to_file('games.json', @app.games)
-
   end
 
   def load_data_from_files
@@ -35,7 +36,9 @@ class FileOperations
 
   def load_games
     load_from_file('games.json') do |data|
-      @app.games = data.map { |game_data| Game.new(game_data['published date'], game_data['multiplayer'], game_data['last played at']) }
+      @app.games = data.map do |game_data|
+        Game.new(game_data['published date'], game_data['multiplayer'], game_data['last played at'])
+      end
     end
   end
 
@@ -84,7 +87,6 @@ class FileOperations
       file.puts(JSON.generate(updated_data))
     end
   end
-
 
   def load_from_file(file_name, &block)
     return unless File.exist?(file_name)
