@@ -8,11 +8,12 @@ require 'date'
 
 # Core functionality class
 class App
-  attr_accessor :item, :books, :labels
+  attr_accessor :item, :books, :labels, :games
 
   def initialize
     @books = []
     @labels = []
+    @games = []
     @file_operations = FileOperations.new(@app)
   end
 
@@ -24,20 +25,22 @@ class App
   def add_item
     puts 'select an option below'
     print 'Do you want to add a book (1)'
-    print 'Do you want to add a music album(2)'
-    print 'Do you want to add a movie(3)'
-    print 'Do you want to add a game(4)'
+    print 'Do you want to add a game(2)'
+    print 'Do you want to add a music album(3)'
+    print 'Do you want to add a movie(4)'
 
     item_type = gets.chomp.to_i
     case item_type
     when 1
       add_book
     when 2
-      list_all_books
+      add_game
     when 3
       list_all_labels
     when 4
-      add_game
+      list_all_games
+    when 5
+      list_all_books
     else
       puts 'Invalid Option'
     end
@@ -102,9 +105,23 @@ class App
     last_play_date = Date.parse(gets.chomp)
 
     game = Game.new(last_play_date, multiplayer, last_play_date)
-    @books << game
+    @games << game
     puts 'Game added successfully!'
   end
+
+  def list_all_games
+    if @games.empty?
+      puts 'No games found.'
+    else
+      puts 'List of all games:'
+      @games.each do |item|
+        if item.is_a?(Game)
+          puts "Multiplayer: #{item.multiplayer}, Last Played At: #{item.last_played_at}"
+        end
+      end
+    end
+  end
+
 
   # Public methods for saving and loading data
   def save_data_to_files
