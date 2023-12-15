@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'item'
 require_relative 'list_all_books'
 require_relative 'book_label'
@@ -23,12 +25,7 @@ class App
   end
 
   def add_item
-    puts 'select an option below'
-    print 'Do you want to add a book (1)'
-    print 'Do you want to add a game(2)'
-    print 'Do you want to add a music album(3)'
-    print 'Do you want to add a movie(4)'
-
+    prompt_create_options
     item_type = gets.chomp.to_i
     case item_type
     when 1
@@ -46,22 +43,21 @@ class App
     end
   end
 
+  def prompt_create_options
+    puts 'select an option below'
+    print 'Do you want to add a book (1)'
+    print 'Do you want to add a game(2)'
+    print 'Do you want to add a music album(3)'
+    print 'Do you want to add a movie(4)'
+  end
+
+  # add book method
   def add_book
-    print 'Label title(Gift/new): '
-    label_name = gets.chomp
-
-    print 'Label color: '
-    label_color = gets.chomp
-
-    # Find or create label
-    label = find_or_create_label(label_name, label_color)
-
+    prompt_label
     print 'Publish Date (YYYY/MM/DD) :'
     publish_date = gets.chomp
-
     print 'Publisher: '
     publisher = gets.chomp
-
     print 'Cover State: '
     cover_state = gets.chomp
 
@@ -80,9 +76,19 @@ class App
     else
       puts 'List of all books:'
       @books.each do |item|
-        puts "Publisher: #{item.publisher}, Cover State: #{item.cover_state}, Published date: #{item.published_date}" if item.is_a?(Book)
+        if item.is_a?(Book)
+          puts "Publisher: #{item.publisher}, Cover State: #{item.cover_state}, Published date: #{item.published_date}"
+        end
       end
     end
+  end
+
+  def prompt_label
+    print 'Label title(Gift/new): '
+    label_name = gets.chomp
+    print 'Label color: '
+    label_color = gets.chomp
+    find_or_create_label(label_name, label_color)
   end
 
   def list_all_labels
@@ -119,12 +125,11 @@ class App
       puts 'List of all games:'
       @games.each do |item|
         if item.is_a?(Game)
-          puts "Multiplayer: #{item.multiplayer}, Last Played : #{item.last_played_at}, Published date: #{item.published_date}"
+          puts "Multiplayer: #{item.multiplayer}, Last Played : #{item.last_played_at}"
         end
       end
     end
   end
-
 
   # Public methods for saving and loading data
   def save_data_to_files
