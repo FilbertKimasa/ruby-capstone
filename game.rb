@@ -5,17 +5,14 @@ class Game < Item
   attr_accessor :multiplayer, :last_played_at
   attr_reader :id
 
-  def initialize(publish_date, multiplayer, last_played_at)
-    super(publish_date)
+  def initialize(published_date, multiplayer, last_played_at)
+    super(published_date)
     @multiplayer = multiplayer
-    @last_played_at = last_played_at
+    @last_played_at = Date.parse(last_played_at.to_s)
   end
 
   def can_be_archived?
-    # Override the parent method
     parent_can_be_archived = super
-
-    # Add additional conditions for archiving in the child class
-    parent_can_be_archived && (Date.today - last_played_at >= 365 * 2)
+    parent_can_be_archived && (Date.today - published_date).to_i > 3652
   end
 end
