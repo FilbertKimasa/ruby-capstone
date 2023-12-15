@@ -2,6 +2,7 @@
 
 class Genre
   attr_reader :name
+  attr_accessor :items
 
   def initialize(name)
     @id = Random.rand(1...1000)
@@ -17,6 +18,6 @@ class Genre
   private
 
   attr_reader :id
-  attr_accessor :items
+  
 
 end
