@@ -1,4 +1,5 @@
 # app
+require 'json'
 require_relative 'item'
 require_relative 'music_album'
 require_relative 'genre'
@@ -10,6 +11,7 @@ class App
     @item = []
     @genres = []
     @music_albums = []
+    load_data
   end
 
   def add_book
@@ -52,6 +54,7 @@ class App
     genre.add_item(music_album)
     @music_albums << music_album
     puts "Music album added: #{music_album.title}"
+    save_data
   end
 
   private
@@ -64,4 +67,43 @@ class App
     @genres << new_genre
     new_genre
   end
+
+def save_data
+  music_albums_data = @music_albums.map do |album|
+    {
+      title: album.title,
+      published_date: album.published_date,
+      on_spotify: album.on_spotify,
+      genre_name: album.genre.name
+    }
+  end
+
+  genres_data = @genres.map do |genre|
+    {
+      name: genre.name,
+      items: genre.items.map { |item| item.title }
+    }
+  end
+
+  data = { music_albums: music_albums_data, genres: genres_data }
+  File.open('music.json', 'w') { |file| file.write(data.to_json) }
+end
+
+def load_data
+  if File.exist?('music.json')
+    data = JSON.parse(File.read('music.json'))
+
+    # Assuming MusicAlbum.new takes parameters like title, published_date, on_spotify, genre_name
+    @music_albums = data['music_albums'].map do |album_data|
+      MusicAlbum.new(album_data['published_date'], album_data['title'], album_data['on_spotify'])
+    end
+
+    @genres = data['genres'].map { |genre_data| Genre.new(genre_data['name']) }
+  else
+    @music_albums = []
+    @genres = []
+  end
+end
+ 
+
 end

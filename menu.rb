@@ -26,8 +26,6 @@ def main
     when 3
       print "Enter title: "
       title = gets.chomp
-      # print "Enter artist: "
-      # artist = gets.chomp
       print "Enter genre: "
       genre_name = gets.chomp
       print "Enter published date (YYYY-MM-DD): "

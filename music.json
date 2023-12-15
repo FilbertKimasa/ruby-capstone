@@ -1,0 +1,20 @@
+{
+  "music_albums": [
+    {
+      "title": "fdsfsf",
+      "published_date": "2012",
+      "on_spotify": false,
+      "genre_name": "sdaf"
+    },
+    {
+      "title": "dsafdfs",
+      "published_date": "1221",
+      "on_spotify": false,
+      "genre_name": "wew"
+    }
+  ],
+  "genres": [
+    { "name": "sdaf", "items": ["fdsfsf"] },
+    { "name": "wew", "items": ["dsafdfs"] }
+  ]
+}
