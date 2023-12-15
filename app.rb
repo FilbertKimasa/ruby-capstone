@@ -7,7 +7,7 @@ require 'date'
 
 # Core functionality class
 class App
-  attr_accessor :item, :books
+  attr_accessor :item, :books, :labels
 
   def initialize
     @books = []
@@ -34,8 +34,8 @@ class App
       add_book
       when 2
         list_all_books
-      # when 3
-      #   create_movie
+      when 3
+        list_all_labels
       # when 4
       #   create_game
     else
@@ -44,11 +44,16 @@ class App
   end
 
   def add_book
-    print 'Label: '
+    print 'Label title(Gift/new): '
     label_name = gets.chomp
-    label = find_or_create_label(label_name)
 
-    print 'Publish Date: '
+    print 'Label color: '
+    label_color = gets.chomp
+
+    # Find or create label
+    label = find_or_create_label(label_name, label_color)
+
+    print 'Publish Date (YYYY/MM/DD) :'
     publish_date = Date.parse(gets.chomp)
 
     print 'Publisher: '
@@ -66,6 +71,7 @@ class App
     puts "Book '#{publisher}' added successfully!"
   end
 
+
   def list_all_books
     if @books.empty?
       puts 'No books found.'
@@ -74,6 +80,19 @@ class App
       @books.each do |item|
         if item.is_a?(Book)
           puts "Publisher: #{item.publisher}, Cover State: #{item.cover_state}"
+        end
+      end
+    end
+  end
+
+  def list_all_labels
+    if @labels.empty?
+      puts 'No labels found.'
+    else
+      puts 'List of all labels:'
+      @labels.each do |item|
+        if item.is_a?(Label)
+          puts "Label title: #{item.title}, Cover State: #{item.color}"
         end
       end
     end
@@ -90,11 +109,11 @@ class App
 
   private
 
-  def find_or_create_label(title)
-    existing_label = @labels.find { |label| label.title == title }
+  def find_or_create_label(title, color)
+    existing_label = @labels.find { |label| label.title == title || label.color == color }
     return existing_label if existing_label
 
-    new_label = Label.new(title, 'default_color')
+    new_label = Label.new(title, color)
     @labels << new_label
     new_label
   end
