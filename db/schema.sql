@@ -28,5 +28,15 @@ CREATE TABLE book (
                       FOREIGN KEY (item_id) REFERENCES item (id)
 );
 
+CREATE TABLE game (
+                      id INTEGER PRIMARY KEY,
+                      multiplayer BOOLEAN,
+                      last_played_at DATE,
+                      item_id INTEGER,
+                      FOREIGN KEY (item_id) REFERENCES item (id)
+);
+
 CREATE INDEX idx_book_item_id ON book(item_id);
 CREATE INDEX idx_item_label_id ON item(label_id);
+CREATE INDEX idx_game_item_id ON game(item_id);
+
