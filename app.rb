@@ -119,7 +119,7 @@ class App
       puts 'List of all games:'
       @games.each do |item|
         if item.is_a?(Game)
-          puts "Multiplayer: #{item.multiplayer}, Last Played At: #{item.last_played_at}"
+          puts "Multiplayer: #{item.multiplayer}, Last Played : #{item.last_played_at}, Published date: #{item.published_date}"
         end
       end
     end
