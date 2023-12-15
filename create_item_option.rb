@@ -3,7 +3,7 @@ require_relative 'menu_option'
 # create item option
 class CreateItemOption < MenuOption
   def execute
-    @app.create_item
+    @app.add_item
   end
 
   def name
