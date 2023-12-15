@@ -8,14 +8,15 @@ class FileOperations
 
   def save_data_to_files
     save_to_file('books.json', @app.books)
-    # save_to_file('books.json', @app.labels)
-
     save_label_to_file('labels.json', @app.labels)
+    save_game_to_file('games.json', @app.games)
+
   end
 
   def load_data_from_files
     load_books
     load_labels
+    load_games
   end
 
   def load_books
@@ -29,6 +30,12 @@ class FileOperations
   def load_labels
     load_from_file('labels.json') do |data|
       @app.labels = data.map { |label_data| Label.new(label_data['title'], label_data['color']) }
+    end
+  end
+
+  def load_games
+    load_from_file('games.json') do |data|
+      @app.games = data.map { |game_data| Game.new(game_data['published_at'], game_data['multiplayer'], game_data['last played at']) }
     end
   end
 
@@ -55,6 +62,20 @@ class FileOperations
         'title' => label.title,
         'color' => label.color
         # 'items' => label.items.map(&:to_hash)
+      }
+    end
+
+    File.open(file_name, 'w') do |file|
+      file.puts(JSON.generate(updated_data))
+    end
+  end
+
+  def save_game_to_file(file_name, data)
+    existing_data = load_from_file(file_name) || [] # Load existing data or initialize with an empty array
+    updated_data = existing_data + data.map do |game|
+      {
+        'multiplayer' => game.multiplayer,
+        'last played at' => game.last_played_at
       }
     end
 
