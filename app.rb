@@ -43,11 +43,7 @@ class App
   end
 
   def add_book
-    print 'Label title(Gift/new): '
-    label_name = gets.chomp
-
-    print 'Label color: '
-    label_color = gets.chomp
+    label_prompt
 
     # Find or create label
     label = find_or_create_label(label_name, label_color)
@@ -73,7 +69,14 @@ class App
     label.add_item(book)
     @books << book
 
-    puts "Book '#{publisher}' added successfully!"
+    puts 'Book '#{publisher}' added successfully!'
+  end
+
+  def label_prompt
+     print 'Label title(Gift/new): '
+    label_name = gets.chomp
+    print 'Label color: '
+    label_color = gets.chomp
   end
 
   def list_all_books
