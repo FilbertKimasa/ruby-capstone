@@ -13,7 +13,6 @@ class App
     @books = []
     @labels = []
     @file_operations = FileOperations.new(@app)
-
   end
 
   def add_label(title, color)
@@ -32,10 +31,10 @@ class App
     case item_type
     when 1
       add_book
-      when 2
-        list_all_books
-      when 3
-        list_all_labels
+    when 2
+      list_all_books
+    when 3
+      list_all_labels
       # when 4
       #   create_game
     else
@@ -71,16 +70,13 @@ class App
     puts "Book '#{publisher}' added successfully!"
   end
 
-
   def list_all_books
     if @books.empty?
       puts 'No books found.'
     else
       puts 'List of all books:'
       @books.each do |item|
-        if item.is_a?(Book)
-          puts "Publisher: #{item.publisher}, Cover State: #{item.cover_state}"
-        end
+        puts "Publisher: #{item.publisher}, Cover State: #{item.cover_state}" if item.is_a?(Book)
       end
     end
   end
@@ -91,9 +87,7 @@ class App
     else
       puts 'List of all labels:'
       @labels.each do |item|
-        if item.is_a?(Label)
-          puts "Label title: #{item.title}, Cover State: #{item.color}"
-        end
+        puts "Label title: #{item.title}, Cover State: #{item.color}" if item.is_a?(Label)
       end
     end
   end

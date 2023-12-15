@@ -1,4 +1,3 @@
-
 require_relative 'menu_option'
 
 class ListAllLabels < MenuOption

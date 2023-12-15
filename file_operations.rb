@@ -20,7 +20,9 @@ class FileOperations
 
   def load_books
     load_from_file('books.json') do |data|
-      @app.books = data.map { |book_data| Book.new(book_data['publish_date'], book_data['publisher'], book_data['cover_state']) }
+      @app.books = data.map do |book_data|
+        Book.new(book_data['publish_date'], book_data['publisher'], book_data['cover_state'])
+      end
     end
   end
 
@@ -51,7 +53,7 @@ class FileOperations
     updated_data = existing_data + data.map do |label|
       {
         'title' => label.title,
-        'color' => label.color,
+        'color' => label.color
         # 'items' => label.items.map(&:to_hash)
       }
     end
@@ -72,5 +74,4 @@ class FileOperations
   def find_book_by_title(publisher)
     @app.books.find { |book| book.publisher == publisher }
   end
-
 end

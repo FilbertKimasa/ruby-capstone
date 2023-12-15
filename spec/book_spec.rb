@@ -23,6 +23,6 @@ describe Book do
   end
 
   it 'can be archived if older than 10 years' do
-    expect(@book.can_be_archived?).to eq(false )
+    expect(@book.can_be_archived?).to eq(false)
   end
 end

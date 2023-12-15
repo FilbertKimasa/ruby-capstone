@@ -7,5 +7,5 @@ class ListAllbooks < MenuOption
 
   def name
     'List all books'
-    end
+  end
 end

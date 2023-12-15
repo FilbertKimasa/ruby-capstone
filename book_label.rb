@@ -21,6 +21,6 @@ class Book < Item
     parent_can_be_archived = super
 
     # Add additional conditions for archiving in the child class
-    parent_can_be_archived || cover_state == "bad"
+    parent_can_be_archived || cover_state == 'bad'
   end
 end

@@ -11,7 +11,7 @@ class Catalog
   end
 
   def start
-    @file_operations.load_data_from_files 
+    @file_operations.load_data_from_files
 
     display_welcome_message
 
@@ -36,7 +36,7 @@ class Catalog
   end
 
   def exit_program
-    @file_operations.save_data_to_files 
+    @file_operations.save_data_to_files
     puts 'Thank you for using this app! Goodbye!'
   end
 end
