@@ -52,8 +52,14 @@ class App
     # Find or create label
     label = find_or_create_label(label_name, label_color)
 
-    print 'Publish Date (YYYY/MM/DD) :'
-    publish_date = Date.parse(gets.chomp)
+    begin
+      print 'Publish Date (YYYY/MM/DD) :'
+      publish_date_input = gets.chomp
+      publish_date = Date.parse(publish_date_input)
+    rescue ArgumentError
+      puts "Invalid date format. Please enter the date in the format YYYY/MM/DD."
+      return
+    end
 
     print 'Publisher: '
     publisher = gets.chomp
