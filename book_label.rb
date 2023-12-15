@@ -1,14 +1,20 @@
+require_relative 'item'
+require 'date'
+
+# book class
 class Book < Item
   attr_accessor :publisher, :cover_state
   attr_reader :id
+  attr_writer :publish_date
+
 
   def initialize(publish_date, publisher, cover_state)
-    super(publish_date)
+    super(Date.parse(publish_date))
     @publisher = publisher
     @cover_state = cover_state
   end
 
-  private
+  # private
 
   def can_be_archived?
     # Override the parent method
