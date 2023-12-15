@@ -74,6 +74,7 @@ class FileOperations
     existing_data = load_from_file(file_name) || [] # Load existing data or initialize with an empty array
     updated_data = existing_data + data.map do |game|
       {
+        'published date' => game.published_date,
         'multiplayer' => game.multiplayer,
         'last played at' => game.last_played_at
       }
@@ -83,6 +84,7 @@ class FileOperations
       file.puts(JSON.generate(updated_data))
     end
   end
+
 
   def load_from_file(file_name, &block)
     return unless File.exist?(file_name)
