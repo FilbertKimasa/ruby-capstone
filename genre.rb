@@ -18,6 +18,4 @@ class Genre
   private
 
   attr_reader :id
-  
-
 end

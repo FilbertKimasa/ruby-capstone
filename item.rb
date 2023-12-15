@@ -14,9 +14,9 @@ class Item
   def move_to_archive
     if can_be_archived?
       @archived = true
-      puts "This item has been archived."
+      puts 'This item has been archived.'
     else
-      puts "This item cannot be archived at this time."
+      puts 'This item cannot be archived at this time.'
     end
   end
 
@@ -39,7 +39,7 @@ class Item
     @label = label
     label.items.push(self) unless label.items.include?(self)
   end
-  
+
   private
 
   attr_accessor :archived

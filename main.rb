@@ -9,7 +9,6 @@ class Catalog
   end
 
   def start
-
     display_welcome_message
 
     loop do
