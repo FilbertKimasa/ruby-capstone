@@ -35,7 +35,7 @@ class FileOperations
 
   def load_games
     load_from_file('games.json') do |data|
-      @app.games = data.map { |game_data| Game.new(game_data['published_at'], game_data['multiplayer'], game_data['last played at']) }
+      @app.games = data.map { |game_data| Game.new(game_data['published date'], game_data['multiplayer'], game_data['last played at']) }
     end
   end
 
