@@ -101,10 +101,13 @@ class App
     multiplayer_option = gets.chomp.to_i
     multiplayer = (multiplayer_option == 1)
 
+    print 'Published date (YYYY/MM/DD): '
+    published_date = Date.parse(gets.chomp)
+
     print 'Last play date (YYYY/MM/DD): '
     last_play_date = Date.parse(gets.chomp)
 
-    game = Game.new(last_play_date, multiplayer, last_play_date)
+    game = Game.new(published_date, multiplayer, last_play_date)
     @games << game
     puts 'Game added successfully!'
   end
