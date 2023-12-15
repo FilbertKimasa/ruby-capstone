@@ -2,6 +2,7 @@ require_relative 'item'
 require_relative 'list_all_books'
 require_relative 'book_label'
 require_relative 'label'
+require_relative 'game'
 require_relative 'file_operations'
 require 'date'
 
@@ -35,8 +36,8 @@ class App
       list_all_books
     when 3
       list_all_labels
-      # when 4
-      #   create_game
+    when 4
+      add_game
     else
       puts 'Invalid Option'
     end
@@ -90,6 +91,19 @@ class App
         puts "Label title: #{item.title}, Cover State: #{item.color}" if item.is_a?(Label)
       end
     end
+  end
+
+  def add_game
+    print 'Is the game multiplayer? (1 for Yes, 2 for No): '
+    multiplayer_option = gets.chomp.to_i
+    multiplayer = (multiplayer_option == 1)
+
+    print 'Last play date (YYYY/MM/DD): '
+    last_play_date = Date.parse(gets.chomp)
+
+    game = Game.new(last_play_date, multiplayer, last_play_date)
+    @books << game
+    puts 'Game added successfully!'
   end
 
   # Public methods for saving and loading data
