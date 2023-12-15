@@ -24,8 +24,8 @@ def main
     when 2
       app.list_all_genres
     when 3
-      # print "Enter title: "
-      # title = gets.chomp
+      print "Enter title: "
+      title = gets.chomp
       # print "Enter artist: "
       # artist = gets.chomp
       print "Enter genre: "
@@ -35,7 +35,7 @@ def main
       print "Is it on Spotify? (true/false): "
       on_spotify = gets.chomp.downcase == 'true'
 
-      app.add_music_album(genre_name, published_date, on_spotify)
+      app.add_music_album(genre_name, title, published_date, on_spotify)
     when 4
       puts "Exiting the program. Goodbye!"
       break
