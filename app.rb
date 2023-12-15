@@ -57,7 +57,7 @@ class App
     label = find_or_create_label(label_name, label_color)
 
     print 'Publish Date (YYYY/MM/DD) :'
-    publish_date = Date.parse(gets.chomp)
+    publish_date = gets.chomp
 
     print 'Publisher: '
     publisher = gets.chomp
@@ -80,7 +80,7 @@ class App
     else
       puts 'List of all books:'
       @books.each do |item|
-        puts "Publisher: #{item.publisher}, Cover State: #{item.cover_state}" if item.is_a?(Book)
+        puts "Publisher: #{item.publisher}, Cover State: #{item.cover_state}, Published date: #{item.published_date}" if item.is_a?(Book)
       end
     end
   end
@@ -102,10 +102,10 @@ class App
     multiplayer = (multiplayer_option == 1)
 
     print 'Published date (YYYY/MM/DD): '
-    published_date = Date.parse(gets.chomp)
+    published_date = gets.chomp
 
     print 'Last play date (YYYY/MM/DD): '
-    last_play_date = Date.parse(gets.chomp)
+    last_play_date = gets.chomp
 
     game = Game.new(published_date, multiplayer, last_play_date)
     @games << game

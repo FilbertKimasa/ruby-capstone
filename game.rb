@@ -9,7 +9,7 @@ class Game < Item
     super(published_date)
     @multiplayer = multiplayer
     @last_played_at = Date.parse(last_played_at.to_s)
-    @published_date = published_date
+    @published_date = published_date.nil? ? nil : Date.parse(published_date)
   end
 
   def can_be_archived?
