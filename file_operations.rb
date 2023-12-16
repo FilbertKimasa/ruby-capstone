@@ -42,7 +42,7 @@ class FileOperations
   def load_genres
     load_from_file('genres.json') do |data|
       @app.genres = data.map do |genre|
-        Genre.new(genre['name'])
+        Genre.new(genre['genre_name'])
       end
     end
   end
@@ -122,12 +122,10 @@ class FileOperations
 
   def save_genres_to_file(file_name, data)
     existing_data = load_from_file(file_name) || [] # Load existing data or initialize with an empty array
-    existing_genre_names = existing_data.map { |genre| genre['name'] }
-    new_genre_names = data.map { |genre| genre.name }
-    combined_genre_names = (existing_genre_names + new_genre_names).uniq
-
-    updated_data = combined_genre_names.map do |name|
-      { 'name' => name }
+    updated_data = existing_data + data.map do |genre|
+      {
+        'genre name' => genre.name
+      }
     end
 
     File.open(file_name, 'w') do |file|
