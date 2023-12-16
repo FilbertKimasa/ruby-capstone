@@ -1,7 +1,7 @@
 require_relative 'menu_option'
 
 class ListGenre < MenuOption
-    def execute
+  def execute
     @app.list_all_genres
   end
 

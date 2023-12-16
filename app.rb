@@ -156,9 +156,11 @@ class App
       puts 'No music albums available.'
     else
       puts 'List of all music albums:'
-      @music_albums.each do |album|
-        puts "Published Date: #{album.published_date}, On Spotify: #{album.on_spotify}"
-      end
+      concatenated_info = @music_albums.map do |album|
+        "Published Date: #{album.published_date}, On Spotify: #{album.on_spotify}"
+      end.join("\n")
+
+      puts concatenated_info
     end
   end
 

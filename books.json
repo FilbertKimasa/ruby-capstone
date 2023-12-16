@@ -1,1 +1,188 @@
-[{"id":396,"publish_date":"2012-12-01","publisher":"Noel","cover_state":"good"},{"id":676,"publish_date":"2013-12-01","publisher":"Pamy","cover_state":"bad"},{"id":935,"publish_date":"2012-12-12","publisher":"wasaa","cover_state":"badd"},{"id":713,"publish_date":"2019-12-01","publisher":"Noel","cover_state":"good"},{"id":447,"publish_date":"2016-12-01","publisher":"Pam","cover_state":"good"},{"id":321,"publish_date":"2013-11-01","publisher":"Queen","cover_state":"good"},{"id":841,"publish_date":"2018-12-01","publisher":"filbert","cover_state":"good"},{"id":952,"publish_date":"2012-03-01","publisher":"lion","cover_state":"good"},{"id":23,"publish_date":"2015-12-01","publisher":"Son","cover_state":"good"},{"id":617,"publish_date":"2016-12-12","publisher":"ryan","cover_state":"good"},{"id":482,"publish_date":"2012-12-01","publisher":"eer","cover_state":"good"},{"id":78,"publish_date":"2012-12-01","publisher":"filbrry","cover_state":"good"},{"id":598,"publish_date":"2012-12-01","publisher":"Kasee","cover_state":"bad"},{"id":668,"publish_date":"2023-12-01","publisher":"Pam","cover_state":"Good"},{"id":425,"publish_date":"2012-12-01","publisher":"goow","cover_state":"good"},{"id":825,"publish_date":"2012-12-12","publisher":"Noelso","cover_state":"good"},{"id":761,"publish_date":"2010-12-01","publisher":"Maino","cover_state":"bad"},{"id":269,"publish_date":"2012-12-01","publisher":"Pam","cover_state":"bad"},{"id":559,"publish_date":"2013-02-01","publisher":"Judy","cover_state":"good"},{"id":866,"publish_date":"2013-12-01","publisher":"King","cover_state":"bad"},{"id":224,"publish_date":"2013-12-01","publisher":"Noelo","cover_state":"Good"},{"id":912,"publish_date":"2011-11-01","publisher":"Pam","cover_state":"bad"},{"id":454,"publish_date":"2013-02-01","publisher":"Pam","cover_state":"good"},{"id":224,"publish_date":"2012-03-04","publisher":"Noelso","cover_state":"Bad"},{"id":501,"publish_date":"2019-04-01","publisher":"Kasee","cover_state":"bad"},{"id":310,"publish_date":"2012-12-01","publisher":"noel","cover_state":"good"},{"id":37,"publish_date":"2011-11-01","publisher":"Pam","cover_state":"good"},{"id":87,"publish_date":"2012-12-01","publisher":"Noel","cover_state":"good"},{"id":818,"publish_date":"2012-12-12","publisher":"Noel","cover_state":"good"},{"id":810,"publish_date":"2012-12-01","publisher":"Shirley","cover_state":"good"},{"id":66,"publish_date":"2015-12-01","publisher":"Kasee","cover_state":"bad"},{"id":141,"publish_date":"2011-01-12","publisher":"ds","cover_state":"sds"}]
+[
+  {
+    "id": 146,
+    "publish_date": "2012-12-01",
+    "publisher": "Noel",
+    "cover_state": "good"
+  },
+  {
+    "id": 962,
+    "publish_date": "2013-12-01",
+    "publisher": "Pamy",
+    "cover_state": "bad"
+  },
+  {
+    "id": 893,
+    "publish_date": "2012-12-12",
+    "publisher": "wasaa",
+    "cover_state": "badd"
+  },
+  {
+    "id": 55,
+    "publish_date": "2019-12-01",
+    "publisher": "Noel",
+    "cover_state": "good"
+  },
+  {
+    "id": 815,
+    "publish_date": "2016-12-01",
+    "publisher": "Pam",
+    "cover_state": "good"
+  },
+  {
+    "id": 212,
+    "publish_date": "2013-11-01",
+    "publisher": "Queen",
+    "cover_state": "good"
+  },
+  {
+    "id": 107,
+    "publish_date": "2018-12-01",
+    "publisher": "filbert",
+    "cover_state": "good"
+  },
+  {
+    "id": 768,
+    "publish_date": "2012-03-01",
+    "publisher": "lion",
+    "cover_state": "good"
+  },
+  {
+    "id": 948,
+    "publish_date": "2015-12-01",
+    "publisher": "Son",
+    "cover_state": "good"
+  },
+  {
+    "id": 710,
+    "publish_date": "2016-12-12",
+    "publisher": "ryan",
+    "cover_state": "good"
+  },
+  {
+    "id": 919,
+    "publish_date": "2012-12-01",
+    "publisher": "eer",
+    "cover_state": "good"
+  },
+  {
+    "id": 320,
+    "publish_date": "2012-12-01",
+    "publisher": "filbrry",
+    "cover_state": "good"
+  },
+  {
+    "id": 962,
+    "publish_date": "2012-12-01",
+    "publisher": "Kasee",
+    "cover_state": "bad"
+  },
+  {
+    "id": 725,
+    "publish_date": "2023-12-01",
+    "publisher": "Pam",
+    "cover_state": "Good"
+  },
+  {
+    "id": 575,
+    "publish_date": "2012-12-01",
+    "publisher": "goow",
+    "cover_state": "good"
+  },
+  {
+    "id": 594,
+    "publish_date": "2012-12-12",
+    "publisher": "Noelso",
+    "cover_state": "good"
+  },
+  {
+    "id": 279,
+    "publish_date": "2010-12-01",
+    "publisher": "Maino",
+    "cover_state": "bad"
+  },
+  {
+    "id": 22,
+    "publish_date": "2012-12-01",
+    "publisher": "Pam",
+    "cover_state": "bad"
+  },
+  {
+    "id": 397,
+    "publish_date": "2013-02-01",
+    "publisher": "Judy",
+    "cover_state": "good"
+  },
+  {
+    "id": 838,
+    "publish_date": "2013-12-01",
+    "publisher": "King",
+    "cover_state": "bad"
+  },
+  {
+    "id": 908,
+    "publish_date": "2013-12-01",
+    "publisher": "Noelo",
+    "cover_state": "Good"
+  },
+  {
+    "id": 574,
+    "publish_date": "2011-11-01",
+    "publisher": "Pam",
+    "cover_state": "bad"
+  },
+  {
+    "id": 772,
+    "publish_date": "2013-02-01",
+    "publisher": "Pam",
+    "cover_state": "good"
+  },
+  {
+    "id": 936,
+    "publish_date": "2012-03-04",
+    "publisher": "Noelso",
+    "cover_state": "Bad"
+  },
+  {
+    "id": 954,
+    "publish_date": "2019-04-01",
+    "publisher": "Kasee",
+    "cover_state": "bad"
+  },
+  {
+    "id": 111,
+    "publish_date": "2012-12-01",
+    "publisher": "noel",
+    "cover_state": "good"
+  },
+  {
+    "id": 418,
+    "publish_date": "2011-11-01",
+    "publisher": "Pam",
+    "cover_state": "good"
+  },
+  {
+    "id": 382,
+    "publish_date": "2012-12-01",
+    "publisher": "Noel",
+    "cover_state": "good"
+  },
+  {
+    "id": 75,
+    "publish_date": "2012-12-12",
+    "publisher": "Noel",
+    "cover_state": "good"
+  },
+  {
+    "id": 485,
+    "publish_date": "2012-12-01",
+    "publisher": "Shirley",
+    "cover_state": "good"
+  },
+  {
+    "id": 815,
+    "publish_date": "2015-12-01",
+    "publisher": "Kasee",
+    "cover_state": "bad"
+  }
+]
