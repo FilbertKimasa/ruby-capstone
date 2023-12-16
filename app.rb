@@ -28,7 +28,6 @@ class App
     print 'Do you want to add a game(2)'
     print 'Do you want to add a movie(3)'
     print 'Do you want to add a music album(4)'
-
   end
 
   def add_item
