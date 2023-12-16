@@ -162,7 +162,7 @@ class App
         "Published Date: #{album.published_date}, On Spotify: #{album.on_spotify}"
       end.join("\n")
 
-puts concatenated_info
+      puts concatenated_info
     end
   end
 
@@ -176,24 +176,24 @@ puts concatenated_info
   end
 
   def add_music_album
-      print "Enter genre: "
-      genre_name = gets.chomp
-      print "Enter published date (YYYY-MM-DD): "
-      published_date = gets.chomp
-      print "Is it on Spotify? (true/false): "
-      on_spotify = gets.chomp.downcase == 'true'
+    print 'Enter genre: '
+    genre_name = gets.chomp
+    print 'Enter published date (YYYY-MM-DD): '
+    published_date = gets.chomp
+    print 'Is it on Spotify? (true/false): '
+    on_spotify = gets.chomp.downcase == 'true'
 
 
     genre = find_or_create_genre(genre_name)
     music_album = MusicAlbum.new(published_date, on_spotify)
     genre.add_item(music_album)
     @music_albums << music_album
-    puts "Music album added"
+    puts 'Music album added'
   end
 
   private
 
-   def find_or_create_label(title, color)
+  def find_or_create_label(title, color)
     existing_label = @labels.find { |label| label.title == title || label.color == color }
     return existing_label if existing_label
 
@@ -210,5 +210,4 @@ puts concatenated_info
     @genres << new_genre
     new_genre
   end
-
 end
