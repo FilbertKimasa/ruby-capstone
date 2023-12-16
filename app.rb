@@ -11,7 +11,7 @@ require_relative 'music_album'
 require 'date'
 
 class App
-  attr_accessor :item, :books, :labels, :games
+  attr_accessor :item, :books, :labels, :games, :music_albums, :genres
 
   def initialize
     @books = []
@@ -165,23 +165,18 @@ class App
     @file_operations.load_data_from_files
   end
 
-  private
-
-  def find_or_create_label(title, color)
-    existing_label = @labels.find { |label| label.title == title || label.color == color }
-    return existing_label if existing_label
-
-    new_label = Label.new(title, color)
-    @labels << new_label
-    new_label
-  end
+ 
 
   def list_all_music_albums
     if @music_albums.empty?
       puts 'No music albums available.'
     else
       puts 'List of all music albums:'
-      @music_albums.each { |album| puts album.title }
+      concatenated_info = @music_albums.map do |album|
+        "Published Date: #{album.published_date}, On Spotify: #{album.on_spotify}"
+      end.join("\n")
+
+puts concatenated_info
     end
   end
 
@@ -207,11 +202,20 @@ class App
     music_album = MusicAlbum.new(published_date, on_spotify)
     genre.add_item(music_album)
     @music_albums << music_album
-    # save_data
+    save_data
     puts "Music album added"
   end
 
   private
+
+   def find_or_create_label(title, color)
+    existing_label = @labels.find { |label| label.title == title || label.color == color }
+    return existing_label if existing_label
+
+    new_label = Label.new(title, color)
+    @labels << new_label
+    new_label
+  end
 
   def find_or_create_genre(name)
     existing_genre = @genres.find { |g| g.name == name }
@@ -222,26 +226,26 @@ class App
     new_genre
   end
 
-  # def save_data
-  #   music_albums_data = @music_albums.map do |album|
-  #     {
-  #       title: album.title,
-  #       published_date: album.published_date,
-  #       on_spotify: album.on_spotify,
-  #       genre_name: album.genre.name
-  #     }
-  #   end
+  def save_data
+    music_albums_data = @music_albums.map do |album|
+      {
+        title: album.title,
+        published_date: album.published_date,
+        on_spotify: album.on_spotify,
+        genre_name: album.genre.name
+      }
+    end
 
-  #   genres_data = @genres.map do |genre|
-  #     {
-  #       name: genre.name,
-  #       items: genre.items.map { |item| item.title }
-  #     }
-  #   end
+    genres_data = @genres.map do |genre|
+      {
+        name: genre.name,
+        items: genre.items.map { |item| item.title }
+      }
+    end
 
-  #   data = { music_albums: music_albums_data, genres: genres_data }
-  #   File.open('music.json', 'w') { |file| file.write(data.to_json) }
-  # end
+    data = { music_albums: music_albums_data, genres: genres_data }
+    File.open('music.json', 'w') { |file| file.write(data.to_json) }
+  end
 
   # def load_data
   #   if File.exist?('music.json')

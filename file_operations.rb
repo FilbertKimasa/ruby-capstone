@@ -10,6 +10,9 @@ class FileOperations
     save_to_file('books.json', @app.books)
     save_label_to_file('labels.json', @app.labels)
     save_game_to_file('games.json', @app.games)
+    save_music_to_file('music.json', @app.music)
+    save_genres_to_file('genres.json', @app.genres)
+
   end
 
   def load_data_from_files
@@ -62,7 +65,6 @@ class FileOperations
       {
         'title' => label.title,
         'color' => label.color
-        # 'items' => label.items.map(&:to_hash)
       }
     end
 
@@ -78,6 +80,33 @@ class FileOperations
         'published date' => game.published_date,
         'multiplayer' => game.multiplayer,
         'last played at' => game.last_played_at
+      }
+    end
+
+    File.open(file_name, 'w') do |file|
+      file.puts(JSON.generate(updated_data))
+    end
+  end
+
+   def save_music_to_file(file_name, data)
+    existing_data = load_from_file(file_name) || [] # Load existing data or initialize with an empty array
+    updated_data = existing_data + data.map do |album|
+      {
+        'published date' => album.published_date,
+        'on spotify' => album.on_spotify
+      }
+    end
+
+    File.open(file_name, 'w') do |file|
+      file.puts(JSON.generate(updated_data))
+    end
+  end
+
+  def save_genres_to_file(file_name, data)
+    existing_data = load_from_file(file_name) || [] # Load existing data or initialize with an empty array
+    updated_data = existing_data + data.map do |genre|
+      {
+        'published date' => genre.name
       }
     end
 

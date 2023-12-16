@@ -17,6 +17,7 @@ class Menu
       ListAllLabels,
       ListAllGames,
       ListMusicAlbum,
+      ListGenre,
       ExitOption
     ]
   end
