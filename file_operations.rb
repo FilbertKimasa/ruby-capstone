@@ -28,6 +28,14 @@ class FileOperations
     end
   end
 
+   def load_music_albums
+    load_from_file('music.json') do |data|
+      @app.music_albums = data.map do |album|
+        Book.new(album['published date'], album['on spotify'])
+      end
+    end
+  end
+
   def load_labels
     load_from_file('labels.json') do |data|
       @app.labels = data.map { |label_data| Label.new(label_data['title'], label_data['color']) }
