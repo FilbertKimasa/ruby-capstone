@@ -48,7 +48,7 @@
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-### Video Demo <a name="key-features"></a>
+### Video Demo <a name="demo"></a>
 [Demo](./video_presentation.mp4)
 
 
