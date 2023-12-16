@@ -1,8 +1,8 @@
 # genre.rb
 
 class Genre
-  attr_reader :name
-  attr_accessor :items
+  attr_accessor :items, :name
+  attr_reader :id
 
   def initialize(name)
     @id = Random.rand(1...1000)
