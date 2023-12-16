@@ -25,9 +25,10 @@ class App
   def add_item_options
     puts 'select an option below'
     print 'Do you want to add a book (1)'
-    print 'Do you want to add a music album(2)'
+    print 'Do you want to add a game(2)'
     print 'Do you want to add a movie(3)'
-    print 'Do you want to add a game(4)'
+    print 'Do you want to add a music album(4)'
+
   end
 
   def add_item
