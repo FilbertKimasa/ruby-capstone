@@ -14,8 +14,4 @@ class Genre
     @items << item
     item.genre = self
   end
-
-  private
-
-  attr_reader :id
 end
