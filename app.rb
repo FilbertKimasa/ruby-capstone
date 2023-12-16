@@ -1,11 +1,13 @@
 # app
-require 'json'
+# require 'json'
 require_relative 'item'
 require_relative 'list_all_books'
 require_relative 'book_label'
 require_relative 'label'
 require_relative 'game'
 require_relative 'file_operations'
+require_relative 'genre'
+require_relative 'music_album'
 require 'date'
 
 class App
@@ -15,6 +17,8 @@ class App
     @books = []
     @labels = []
     @games = []
+    @genres = []
+    @music_albums = []
     @file_operations = FileOperations.new(@app)
   end
 
@@ -27,8 +31,7 @@ class App
     puts 'select an option below'
     print 'Do you want to add a book (1)'
     print 'Do you want to add a game(2)'
-    print 'Do you want to add a movie(3)'
-    print 'Do you want to add a music album(4)'
+    print 'Do you want to add a music album(3)'
   end
 
   def add_item
@@ -40,11 +43,11 @@ class App
     when 2
       add_game
     when 3
-      list_all_labels
-    when 4
-      list_all_games
-    when 5
-      list_all_books
+      add_music_album
+    # when 4
+    #   list_all_games
+    # when 5
+    #   list_all_books
     else
       puts 'Invalid Option'
     end
@@ -191,14 +194,21 @@ class App
     end
   end
 
-  def add_music_album(genre_name, title, published_date, on_spotify)
+  def add_music_album
+      print "Enter genre: "
+      genre_name = gets.chomp
+      print "Enter published date (YYYY-MM-DD): "
+      published_date = gets.chomp
+      print "Is it on Spotify? (true/false): "
+      on_spotify = gets.chomp.downcase == 'true'
+
+
     genre = find_or_create_genre(genre_name)
-    music_album = MusicAlbum.new(published_date, title, on_spotify)
-    music_album.title = title
+    music_album = MusicAlbum.new(published_date, on_spotify)
     genre.add_item(music_album)
     @music_albums << music_album
-    puts "Music album added: #{music_album.title}"
-    save_data
+    # save_data
+    puts "Music album added"
   end
 
   private
@@ -212,39 +222,39 @@ class App
     new_genre
   end
 
-  def save_data
-    music_albums_data = @music_albums.map do |album|
-      {
-        title: album.title,
-        published_date: album.published_date,
-        on_spotify: album.on_spotify,
-        genre_name: album.genre.name
-      }
-    end
+  # def save_data
+  #   music_albums_data = @music_albums.map do |album|
+  #     {
+  #       title: album.title,
+  #       published_date: album.published_date,
+  #       on_spotify: album.on_spotify,
+  #       genre_name: album.genre.name
+  #     }
+  #   end
 
-    genres_data = @genres.map do |genre|
-      {
-        name: genre.name,
-        items: genre.items.map { |item| item.title }
-      }
-    end
+  #   genres_data = @genres.map do |genre|
+  #     {
+  #       name: genre.name,
+  #       items: genre.items.map { |item| item.title }
+  #     }
+  #   end
 
-    data = { music_albums: music_albums_data, genres: genres_data }
-    File.open('music.json', 'w') { |file| file.write(data.to_json) }
-  end
+  #   data = { music_albums: music_albums_data, genres: genres_data }
+  #   File.open('music.json', 'w') { |file| file.write(data.to_json) }
+  # end
 
-  def load_data
-    if File.exist?('music.json')
-      data = JSON.parse(File.read('music.json'))
+  # def load_data
+  #   if File.exist?('music.json')
+  #     data = JSON.parse(File.read('music.json'))
 
-      @music_albums = data['music_albums'].map do |album_data|
-        MusicAlbum.new(album_data['published_date'], album_data['title'], album_data['on_spotify'])
-      end
+  #     @music_albums = data['music_albums'].map do |album_data|
+  #       MusicAlbum.new(album_data['published_date'], album_data['title'], album_data['on_spotify'])
+  #     end
 
-      @genres = data['genres'].map { |genre_data| Genre.new(genre_data['name']) }
-    else
-      @music_albums = []
-      @genres = []
-    end
-  end
+  #     @genres = data['genres'].map { |genre_data| Genre.new(genre_data['name']) }
+  #   else
+  #     @music_albums = []
+  #     @genres = []
+  #   end
+  # end
 end
