@@ -10,9 +10,8 @@ class FileOperations
     save_to_file('books.json', @app.books)
     save_label_to_file('labels.json', @app.labels)
     save_game_to_file('games.json', @app.games)
-    save_music_to_file('music.json', @app.music)
+    save_music_to_file('music.json', @app.music_albums)
     save_genres_to_file('genres.json', @app.genres)
-
   end
 
   def load_data_from_files
@@ -106,7 +105,7 @@ class FileOperations
     existing_data = load_from_file(file_name) || [] # Load existing data or initialize with an empty array
     updated_data = existing_data + data.map do |genre|
       {
-        'published date' => genre.name
+        'genre name' => genre.name
       }
     end
 

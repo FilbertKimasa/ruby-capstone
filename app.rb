@@ -44,10 +44,6 @@ class App
       add_game
     when 3
       add_music_album
-    # when 4
-    #   list_all_games
-    # when 5
-    #   list_all_books
     else
       puts 'Invalid Option'
     end
@@ -156,17 +152,6 @@ class App
     end
   end
 
-  # Public methods for saving and loading data
-  def save_data_to_files
-    @file_operations.save_data_to_files
-  end
-
-  def load_data_from_files
-    @file_operations.load_data_from_files
-  end
-
- 
-
   def list_all_music_albums
     if @music_albums.empty?
       puts 'No music albums available.'
@@ -202,7 +187,6 @@ puts concatenated_info
     music_album = MusicAlbum.new(published_date, on_spotify)
     genre.add_item(music_album)
     @music_albums << music_album
-    save_data
     puts "Music album added"
   end
 
@@ -226,39 +210,4 @@ puts concatenated_info
     new_genre
   end
 
-  def save_data
-    music_albums_data = @music_albums.map do |album|
-      {
-        title: album.title,
-        published_date: album.published_date,
-        on_spotify: album.on_spotify,
-        genre_name: album.genre.name
-      }
-    end
-
-    genres_data = @genres.map do |genre|
-      {
-        name: genre.name,
-        items: genre.items.map { |item| item.title }
-      }
-    end
-
-    data = { music_albums: music_albums_data, genres: genres_data }
-    File.open('music.json', 'w') { |file| file.write(data.to_json) }
-  end
-
-  # def load_data
-  #   if File.exist?('music.json')
-  #     data = JSON.parse(File.read('music.json'))
-
-  #     @music_albums = data['music_albums'].map do |album_data|
-  #       MusicAlbum.new(album_data['published_date'], album_data['title'], album_data['on_spotify'])
-  #     end
-
-  #     @genres = data['genres'].map { |genre_data| Genre.new(genre_data['name']) }
-  #   else
-  #     @music_albums = []
-  #     @genres = []
-  #   end
-  # end
 end
