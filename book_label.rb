@@ -3,7 +3,7 @@ require 'date'
 
 # book class
 class Book < Item
-  attr_accessor :publisher, :cover_state
+  attr_accessor :publisher, :cover_state, :label
   attr_reader :id
   attr_writer :publish_date
 

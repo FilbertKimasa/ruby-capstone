@@ -2,16 +2,18 @@ require_relative 'item'
 require_relative 'list_all_books'
 require_relative 'book_label'
 require_relative 'label'
+require_relative 'game'
 require_relative 'file_operations'
 require 'date'
 
 # Core functionality class
 class App
-  attr_accessor :item, :books, :labels
+  attr_accessor :item, :books, :labels, :games
 
   def initialize
     @books = []
     @labels = []
+    @games = []
     @file_operations = FileOperations.new(@app)
   end
 
@@ -23,9 +25,9 @@ class App
   def add_item_options
     puts 'select an option below'
     print 'Do you want to add a book (1)'
-    print 'Do you want to add a music album(2)'
+    print 'Do you want to add a game(2)'
     print 'Do you want to add a movie(3)'
-    print 'Do you want to add a game(4)'
+    print 'Do you want to add a music album(4)'
   end
 
   def add_item
@@ -35,16 +37,27 @@ class App
     when 1
       add_book
     when 2
-      list_all_books
+      add_game
     when 3
       list_all_labels
-      # when 4
-      #   create_game
+    when 4
+      list_all_games
+    when 5
+      list_all_books
     else
       puts 'Invalid Option'
     end
   end
 
+  def prompt_create_options
+    puts 'select an option below'
+    print 'Do you want to add a book (1)'
+    print 'Do you want to add a game(2)'
+    print 'Do you want to add a music album(3)'
+    print 'Do you want to add a movie(4)'
+  end
+
+  # add book method
   def add_book
     label = label_prompt
     begin
@@ -58,7 +71,6 @@ class App
 
     print 'Publisher: '
     publisher = gets.chomp
-
     print 'Cover State: '
     cover_state = gets.chomp
 
@@ -87,9 +99,19 @@ class App
     else
       puts 'List of all books:'
       @books.each do |item|
-        puts "Publisher: #{item.publisher}, Cover State: #{item.cover_state}" if item.is_a?(Book)
+        if item.is_a?(Book)
+          puts "Publisher: #{item.publisher}, Cover State: #{item.cover_state}, Published date: #{item.published_date}"
+        end
       end
     end
+  end
+
+  def prompt_label
+    print 'Label title(Gift/new): '
+    label_name = gets.chomp
+    print 'Label color: '
+    label_color = gets.chomp
+    find_or_create_label(label_name, label_color)
   end
 
   def list_all_labels
@@ -99,6 +121,33 @@ class App
       puts 'List of all labels:'
       @labels.each do |item|
         puts "Label title: #{item.title}, Cover State: #{item.color}" if item.is_a?(Label)
+      end
+    end
+  end
+
+  def add_game
+    print 'Is the game multiplayer? (1 for Yes, 2 for No): '
+    multiplayer_option = gets.chomp.to_i
+    multiplayer = (multiplayer_option == 1)
+
+    print 'Published date (YYYY/MM/DD): '
+    published_date = gets.chomp
+
+    print 'Last play date (YYYY/MM/DD): '
+    last_play_date = gets.chomp
+
+    game = Game.new(published_date, multiplayer, last_play_date)
+    @games << game
+    puts 'Game added successfully!'
+  end
+
+  def list_all_games
+    if @games.empty?
+      puts 'No games found.'
+    else
+      puts 'List of all games:'
+      @games.each do |item|
+        puts "Multiplayer: #{item.multiplayer}, Last Played : #{item.last_played_at}" if item.is_a?(Game)
       end
     end
   end
