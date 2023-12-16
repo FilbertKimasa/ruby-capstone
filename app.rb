@@ -44,6 +44,7 @@ class App
       add_game
     when 3
       add_music_album
+
     else
       puts 'Invalid Option'
     end
