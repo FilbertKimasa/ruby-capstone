@@ -42,7 +42,7 @@ class FileOperations
   def load_genres
     load_from_file('genres.json') do |data|
       @app.genres = data.map do |genre|
-        Genre.new(genre['genre_name'])
+        Genre.new(genre['name'])
       end
     end
   end
