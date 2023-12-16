@@ -18,6 +18,9 @@ class FileOperations
     load_books
     load_labels
     load_games
+    load_music_albums
+    load_genres
+
   end
 
   def load_books
@@ -28,10 +31,18 @@ class FileOperations
     end
   end
 
-   def load_music_albums
+  def load_music_albums
     load_from_file('music.json') do |data|
       @app.music_albums = data.map do |album|
-        Book.new(album['published date'], album['on spotify'])
+        MusicAlbum.new(album['published_date'], album['on_spotify'])
+      end
+    end
+  end
+
+  def load_genres
+    load_from_file('genres.json') do |data|
+      @app.music_albums = data.map do |genre|
+        Genre.new(genre['name'])
       end
     end
   end
@@ -99,8 +110,8 @@ class FileOperations
     existing_data = load_from_file(file_name) || [] # Load existing data or initialize with an empty array
     updated_data = existing_data + data.map do |album|
       {
-        'published date' => album.published_date,
-        'on spotify' => album.on_spotify
+        'published_date' => album.published_date,
+        'on_spotify' => album.on_spotify
       }
     end
 
