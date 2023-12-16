@@ -1,5 +1,4 @@
-# app
-# require 'json'
+# app.rb
 require_relative 'item'
 require_relative 'list_all_books'
 require_relative 'book_label'
@@ -11,7 +10,7 @@ require_relative 'music_album'
 require 'date'
 
 class App
-  attr_accessor :item, :books, :labels, :games, :music_albums, :genres
+  attr_accessor :books, :labels, :games, :music_albums, :genres
 
   def initialize
     @books = []
@@ -19,7 +18,7 @@ class App
     @games = []
     @genres = []
     @music_albums = []
-    @file_operations = FileOperations.new(@app)
+    @file_operations = FileOperations.new(self)
   end
 
   def add_label(title, color)
@@ -28,10 +27,10 @@ class App
   end
 
   def add_item_options
-    puts 'select an option below'
-    print 'Do you want to add a book (1)'
-    print 'Do you want to add a game(2)'
-    print 'Do you want to add a music album(3)'
+    puts 'Select an option below:'
+    puts '1. Add a book'
+    puts '2. Add a game'
+    puts '3. Add a music album'
   end
 
   def add_item
@@ -44,25 +43,24 @@ class App
       add_game
     when 3
       add_music_album
-
     else
       puts 'Invalid Option'
     end
   end
 
   def prompt_create_options
-    puts 'select an option below'
-    print 'Do you want to add a book (1)'
-    print 'Do you want to add a game(2)'
-    print 'Do you want to add a music album(3)'
-    print 'Do you want to add a movie(4)'
+    puts 'Select an option below:'
+    puts '1. Add a book'
+    puts '2. Add a game'
+    puts '3. Add a music album'
+    puts '4. Add a movie'
   end
 
   # add book method
   def add_book
     label = label_prompt
     begin
-      print 'Publish Date (YYYY/MM/DD) :'
+      print 'Publish Date (YYYY/MM/DD): '
       publish_date_input = gets.chomp
       publish_date = Date.parse(publish_date_input)
     rescue ArgumentError
@@ -148,7 +146,7 @@ class App
     else
       puts 'List of all games:'
       @games.each do |item|
-        puts "Multiplayer: #{item.multiplayer}, Last Played : #{item.last_played_at}" if item.is_a?(Game)
+        puts "Multiplayer: #{item.multiplayer}, Last Played: #{item.last_played_at}" if item.is_a?(Game)
       end
     end
   end
@@ -158,11 +156,9 @@ class App
       puts 'No music albums available.'
     else
       puts 'List of all music albums:'
-      concatenated_info = @music_albums.map do |album|
-        "Published Date: #{album.published_date}, On Spotify: #{album.on_spotify}"
-      end.join("\n")
-
-puts concatenated_info
+      @music_albums.each do |album|
+        puts "Published Date: #{album.published_date}, On Spotify: #{album.on_spotify}"
+      end
     end
   end
 
@@ -176,24 +172,23 @@ puts concatenated_info
   end
 
   def add_music_album
-      print "Enter genre: "
-      genre_name = gets.chomp
-      print "Enter published date (YYYY-MM-DD): "
-      published_date = gets.chomp
-      print "Is it on Spotify? (true/false): "
-      on_spotify = gets.chomp.downcase == 'true'
-
+    print 'Enter genre: '
+    genre_name = gets.chomp
+    print 'Enter published date (YYYY-MM-DD): '
+    published_date = gets.chomp
+    print 'Is it on Spotify? (true/false): '
+    on_spotify = gets.chomp.downcase == 'true'
 
     genre = find_or_create_genre(genre_name)
     music_album = MusicAlbum.new(published_date, on_spotify)
     genre.add_item(music_album)
     @music_albums << music_album
-    puts "Music album added"
+    puts 'Music album added'
   end
 
   private
 
-   def find_or_create_label(title, color)
+  def find_or_create_label(title, color)
     existing_label = @labels.find { |label| label.title == title || label.color == color }
     return existing_label if existing_label
 
@@ -210,5 +205,4 @@ puts concatenated_info
     @genres << new_genre
     new_genre
   end
-
 end
