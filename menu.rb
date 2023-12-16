@@ -1,6 +1,8 @@
 # menu
 require_relative 'create_item_option'
 require_relative 'list_all_books'
+require_relative 'list_all_labels'
+require_relative 'list_all_games'
 require_relative 'exit_option'
 
 # display menu
@@ -10,6 +12,8 @@ class Menu
     @options = [
       CreateItemOption,
       ListAllbooks,
+      ListAllLabels,
+      ListAllGames,
       ExitOption
     ]
   end

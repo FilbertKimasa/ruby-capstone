@@ -7,7 +7,7 @@ class Item
 
   def initialize(published_date)
     @id = Random.rand(1...1000)
-    @published_date = published_date
+    @published_date = published_date.nil? ? nil : published_date
     @archived = false
   end
 
@@ -38,6 +38,14 @@ class Item
   def label=(label)
     @label = label
     label.items.push(self) unless label.items.include?(self)
+  end
+
+  def to_json(options = {})
+    {
+      'id' => @id,
+      'published_date' => @published_date,
+      'archived' => @archived
+    }.to_json(options)
   end
 
   private
