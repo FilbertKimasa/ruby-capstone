@@ -1,20 +1,22 @@
 # item.rb
+require 'date'
+
 class Item
   attr_accessor :published_date
   attr_reader :genre, :author, :source, :label
 
   def initialize(published_date)
     @id = Random.rand(1...1000)
-    @published_date = published_date
+    @published_date = published_date.nil? ? nil : published_date
     @archived = false
   end
 
   def move_to_archive
     if can_be_archived?
       @archived = true
-      puts "This item has been archived."
+      puts 'This item has been archived.'
     else
-      puts "This item cannot be archived at this time."
+      puts 'This item cannot be archived at this time.'
     end
   end
 
@@ -37,13 +39,21 @@ class Item
     @label = label
     label.items.push(self) unless label.items.include?(self)
   end
-  
+
+  def to_json(options = {})
+    {
+      'id' => @id,
+      'published_date' => @published_date,
+      'archived' => @archived
+    }.to_json(options)
+  end
+
   private
 
   attr_accessor :archived
   attr_reader :id
 
   def can_be_archived?
-    (Time.now.year - @published_date.year) > 10
+    (Time.now.year - Date.parse(@published_date).year) > 10
   end
 end
